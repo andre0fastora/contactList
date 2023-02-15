@@ -3,20 +3,20 @@ import { SingleView } from "./";
 
 function ContactRow(props) {
   const user = props.user;
-  const [selectedUser, setSelectedUser] = useState(``);
+  const selectContact = props.selectContact;
+//   const [selectedUser, setSelectedUser] = useState(``);
 
-  function handelClick() {
-    if (selectedUser != user.name) {
-      console.log("no single view");
-    }
-    return selectedUser === user.name ? <SingleView user={user} /> : null;
-  }
+//   function handelClick() {
+//     if (selectedUser != user.name) {
+//       console.log("no single view");
+//     }
+//     return selectedUser === user.name ? <SingleView user={user} /> : null;
+//   }
 
   return (
     <tr
       onClick={() => {
-        setSelectedUser(user.name);
-        handelClick();
+        selectContact(user.id);      
       }}
     >
       <td>{user.name}</td>
