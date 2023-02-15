@@ -22,12 +22,11 @@ const Main = () => {
     getContacts();
   }, []);
 
-
-  async function selectContact(contactId){
+  async function selectContact(contactId, favoriteData) {
     console.log(contactId);
     const response = await fetch(`${BASE}/${contactId}`);
     const result = await response.json();
-    setSelectedContact(result);
+    setSelectedContact({ ...result, ...favoriteData });
   }
 
   return (
@@ -37,7 +36,14 @@ const Main = () => {
       </div>
 
       <div id="container">
-        {selectedContact.id ? <SingleContact selectedContact={selectedContact}/> : <ContactList contacts={contacts} selectContact={selectContact}/>}
+        {selectedContact.id ? (
+          <SingleContact
+            selectContact={selectContact}
+            selectedContact={selectedContact}
+          />
+        ) : (
+          <ContactList contacts={contacts} selectContact={selectContact} />
+        )}
         {/* <ContactList contacts={contacts} selectContact={selectContact}/> */}
       </div>
     </div>
